@@ -1,8 +1,10 @@
 package entities;
 
+import Library.HelperMethods;
+import Library.ReaderInterface;
 import java.util.List;
 
-public class Substance {
+public class Substance implements ReaderInterface<Substance> {
 
   private static char recordIdentifier;
   private long nodeID;
@@ -18,7 +20,11 @@ public class Substance {
 
   private List<Synonym> synonymList;
 
-  public Substance(
+
+  public Substance() {
+}
+
+public Substance(
       long nodeID,
       String casCode,
       String euIndexCode,
@@ -153,5 +159,53 @@ public class Substance {
         + ", nodeID="
         + nodeID
         + "]";
+  }
+
+  @Override
+  public boolean hasAllRequiredFields(String[] splitItemLine) {
+
+    if (splitItemLine.length == 11) {
+
+      return true;
+    }
+
+    return false;
+  }
+
+  @Override
+  public Substance process(String[] splitBlock) {
+    // The first line of the block corresponds to Substance.
+    // Therefore, split the first line and get the individual fields of the Substance.
+    String[] splitSubstance = splitBlock[0].split("\t");
+
+    // Build Substance object
+    char substanceIdentifier = splitSubstance[0].charAt(0);
+    Substance.setRecordIdentifier(substanceIdentifier);
+
+    long substanceNodeID = Long.parseLong(splitSubstance[1]);
+    String casCode = HelperMethods.checkForFieldAvailability(splitSubstance[2]);
+    String euIndexCode = HelperMethods.checkForFieldAvailability(splitSubstance[3]);
+    String einecsOrElincsCode = HelperMethods.checkForFieldAvailability(splitSubstance[4]);
+    boolean dutyToDeclare = HelperMethods.parseStringToBoolean(splitSubstance[5]);
+    short isUnwanted = HelperMethods.parseStringToThreeValuedBoolean(splitSubstance[6]);
+    boolean isProhibited = HelperMethods.parseStringToBoolean(splitSubstance[7]);
+    boolean isReach = HelperMethods.parseStringToBoolean(splitSubstance[8]);
+    boolean isDeleted = HelperMethods.parseStringToBoolean(splitSubstance[9]);
+    boolean isHidden = HelperMethods.parseStringToBoolean(splitSubstance[10]);
+
+    Substance substance =
+        new Substance(
+            substanceNodeID,
+            casCode,
+            euIndexCode,
+            einecsOrElincsCode,
+            dutyToDeclare,
+            isUnwanted,
+            isProhibited,
+            isReach,
+            isDeleted,
+            isHidden);
+
+    return substance;
   }
 }

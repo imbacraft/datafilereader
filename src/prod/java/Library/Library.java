@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import entities.Substance;
+import entities.Synonym;
 
 public class Library {
 
@@ -40,31 +41,33 @@ public class Library {
 
                 } else {
 
-                    //TODO: Process StringbBuilder into class object
+                    //Split block to get all the lines of the block
                     String[] splitBlock = block.toString().split("\n");
 
-
-                    String[] splitSubstance = splitBlock[0].split("\t");
-
-                    char recordIdentifier = splitSubstance[0].charAt(0);
-                    Substance.setRecordIdentifier(recordIdentifier);
-
-                    long nodeID = Long.parseLong(splitSubstance[1]);
-
-                    String casCode = HelperMethods.checkForFieldAvailability(splitSubstance[2]);
-                    String euIndexCode = HelperMethods.checkForFieldAvailability(splitSubstance[3]);
-                    String einecsOrElincsCode = HelperMethods.checkForFieldAvailability(splitSubstance[4]);
-                    boolean dutyToDeclare = HelperMethods.parseStringToBoolean(splitSubstance[5]);
-                    short isUnwanted = HelperMethods.parseStringToThreeValuedBoolean(splitSubstance[6]);
-                    boolean isProhibited = HelperMethods.parseStringToBoolean(splitSubstance[7]);
-                    boolean isReach = HelperMethods.parseStringToBoolean(splitSubstance[8]);
-                    boolean isDeleted = HelperMethods.parseStringToBoolean(splitSubstance[9]);
-                    boolean isHidden = HelperMethods.parseStringToBoolean(splitSubstance[10]);
+                    Substance substance = new Substance();
+                    substance = substance.process(splitBlock);
 
 
-                    Substance substance = new Substance(nodeID, casCode, euIndexCode, einecsOrElincsCode, dutyToDeclare, isUnwanted, isProhibited, isReach, isDeleted, isHidden);
+                    //Split each line that corresponds to a Synonym. Start from index 1 because index 0 was processed as Substance.
+                    for (int index = 1; index < splitBlock.length; index++) {
 
-                    System.out.println(substance.toString());
+                        String[] splitSynonym = splitBlock[index].split("\t");
+
+                        //Build Synonym Object
+                        String synonymIdentifier = splitSynonym[0];
+                        Synonym.setRecordIdentifier(synonymIdentifier);
+                        long synonymNodeID = Long.parseLong(splitSynonym[1]);
+                        short synonymID = Short.parseShort(splitSynonym[2]);
+                        String isoLanguage = splitSynonym[3];
+                        String synonymName = splitSynonym[4];
+
+                        Synonym synonym = new Synonym(synonymNodeID, synonymID, isoLanguage, synonymName);
+
+                        System.out.println(synonym);
+
+                    }
+
+                    // System.out.println(substance.toString());
 
 
                     //Move to the next block
@@ -81,6 +84,7 @@ public class Library {
 
             }
 
+            //Close the BufferedReader
             reader.close();
 
         } catch (IOException ex) {
