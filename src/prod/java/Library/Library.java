@@ -50,9 +50,10 @@ public class Library {
                     Substance.setRecordIdentifier(recordIdentifier);
 
                     long nodeID = Long.parseLong(splitSubstance[1]);
-                    String casCode = splitSubstance[2];
-                    String euIndexCode = splitSubstance[3];
-                    String einecsOrElincsCode = splitSubstance[4];
+
+                    String casCode = HelperMethods.checkForFieldAvailability(splitSubstance[2]);
+                    String euIndexCode = HelperMethods.checkForFieldAvailability(splitSubstance[3]);
+                    String einecsOrElincsCode = HelperMethods.checkForFieldAvailability(splitSubstance[4]);
                     boolean dutyToDeclare = HelperMethods.parseStringToBoolean(splitSubstance[5]);
                     short isUnwanted = HelperMethods.parseStringToThreeValuedBoolean(splitSubstance[6]);
                     boolean isProhibited = HelperMethods.parseStringToBoolean(splitSubstance[7]);
