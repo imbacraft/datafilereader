@@ -2,7 +2,7 @@ package messages;
 
 import Library.Constants;
 
-public class Messages {
+public class ErrorMessages {
 
   public static String invalidSubstanceRecordIdentifierField(String string, long errorLineNumber) {
 
@@ -60,8 +60,7 @@ public class Messages {
         + ".";
   }
 
-  public static String invalidSubstanceDutyToDeclareField (
-      String string, long errorLineNumber) {
+  public static String invalidSubstanceDutyToDeclareField(String string, long errorLineNumber) {
 
     return "At least the Substance dutyToDeclare field of the substance entry at line: "
         + errorLineNumber
@@ -69,5 +68,59 @@ public class Messages {
         + string
         + ".";
   }
+
+  public static String invalidSubstanceIsUnwantedField(String string, long errorLineNumber) {
+
+    return "At least the Substance isUnwanted field of the substance entry at line: "
+        + errorLineNumber
+        + " is malformed. Expected zero or one or minus one, but got: "
+        + string
+        + ".";
+  }
+
+  public static String invalidSubstanceIsProhibitedField(String string, long errorLineNumber) {
+
+    return "At least the Substance isProhibited field of the substance entry at line: "
+        + errorLineNumber
+        + " is malformed. Expected zero or one, but got: "
+        + string
+        + ".";
+  }
+
+  public static String invalidSubstanceIsReachField(String string, long errorLineNumber) {
+
+    return "At least the Substance isReach field of the substance entry at line: "
+        + errorLineNumber
+        + " is malformed. Expected zero or one, but got: "
+        + string
+        + ".";
+  }
+
+  public static String invalidSubstanceIsDeletedField(String string, long errorLineNumber) {
+
+    return "At least the Substance isDeleted field of the substance entry at line: "
+        + errorLineNumber
+        + " is malformed. Expected zero or one, but got: "
+        + string
+        + ".";
+  }
+
+  public static String invalidSubstanceIsHiddenField(String string, long errorLineNumber) {
+
+    return "At least the Substance isHidden field of the substance entry at line: "
+        + errorLineNumber
+        + " is malformed. Expected zero or one, but got: "
+        + string
+        + ".";
+    }
+
+  public static String bothIsDeletedAndIsHiddenAreTrue(long errorLineNumber) {
+
+    return "The isHidden and isDeleted fields of the substance entry at line: "
+        + errorLineNumber
+        + " are both true (1). Either “IsDeleted” or “IsHidden” can possess value “1”, never both at the same time (but both can be “0” of course).";
+    }
+
+
 
 }
