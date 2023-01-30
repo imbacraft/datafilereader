@@ -16,11 +16,13 @@ public class Library {
 
         try {
 
+            //Load file. If file is not found, throw IOException.
             file = new FileReader(filename);
 
             BufferedReader reader = new BufferedReader(file);
             StringBuilder block = new StringBuilder();
 
+            //First line is the header of the data file, so read it to move to the blocks.
             String header = reader.readLine();
 
             String ln;
@@ -46,7 +48,11 @@ public class Library {
                     String[] splitBlock = block.toString().split("\n");
 
                     //Create Substance object from the first line of the block
-                    Substance substance = SubstanceFactory.createSubstance(splitBlock);
+                    SubstanceFactory substanceFactory = new SubstanceFactory();
+                    Substance substance = substanceFactory.create(splitBlock);
+                    //Add each substance to the Substance List
+                    substanceFactory.addToItemList(substance);
+
 
 
 
@@ -58,7 +64,7 @@ public class Library {
                     //Move to the next block
                     id = id2;
 
-                    //Clear the previous block
+                    //Clear the previous block for memory efficiency.
                     block.setLength(0);
 
                     //Append next block
@@ -69,8 +75,9 @@ public class Library {
 
             }
 
-            //Close the BufferedReader
+            //Close the BufferedReader and the file.
             reader.close();
+            file.close();
 
         } catch (IOException ex) {
 

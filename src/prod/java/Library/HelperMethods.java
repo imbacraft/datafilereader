@@ -46,4 +46,8 @@ public class HelperMethods {
     }
     return field;
   }
+
+  public static boolean stringIsNotNullorEmptyAndContainsOnlyDigits(String string) {
+    return string != null && !string.isEmpty() && string.matches("^\\d+$");
+  }
 }

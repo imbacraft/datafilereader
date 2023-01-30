@@ -1,6 +1,6 @@
 package exceptions;
 
-public class MissingFieldException extends Exception {
+public class MissingFieldException extends IllegalArgumentException {
 
 
     public MissingFieldException (String message){
