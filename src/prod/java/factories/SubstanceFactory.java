@@ -61,9 +61,8 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
       boolean dutyToDeclare =
           HelperMethods.parseStringToBoolean(
               splitSubstance[Constants.SUBSTANCE_DUTY_TO_DECLARE_INDEX]);
-      short isUnwanted =
-          HelperMethods.parseStringToThreeValuedBoolean(
-              splitSubstance[Constants.SUBSTANCE_IS_UNWANTED_INDEX]);
+      String isUnwanted =
+          convertIsUnwantedNumericalsToWords(splitSubstance[Constants.SUBSTANCE_IS_UNWANTED_INDEX]);
       boolean isProhibited =
           HelperMethods.parseStringToBoolean(
               splitSubstance[Constants.SUBSTANCE_IS_PROHIBITED_INDEX]);
@@ -289,8 +288,31 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
     return isHidden != null && (isHidden.equals("0") || isHidden.equals("1"));
   }
 
+  // According to FileSpec1.1, section 3.3.2:
+  // Either “IsDeleted” or “IsHidden” can possess value “1”, never both at the same time (but both
+  // can be “0” of course).
   private boolean isDeletedAndIsHiddenAreNotBothTrue(String isDeleted, String isHidden) {
 
     return !(isDeleted.equals("1") && isHidden.equals("1"));
+  }
+
+  // In section 3.3.2 of the FileSpec 1.1 it is stated that: "In 2001 the field "IsUnwanted" has
+  // been removed from the ILRS (former VDA) classifications. For that reason newer substances have
+  // an "IsUnwanted" value of "-1" (unspecified)."
+  private String convertIsUnwantedNumericalsToWords(String isUnwantedNumerical) {
+
+    if ("0".equals(isUnwantedNumerical)) {
+      return "false";
+    }
+
+    if ("1".equals(isUnwantedNumerical)) {
+      return "true";
+    }
+
+    if ("-1".equals(isUnwantedNumerical)) {
+      return Constants.IS_UNWANTED_UNSPECIFIED;
+    }
+
+    throw new IllegalArgumentException("Parsed value is neither 0 nor 1 nor -1.");
   }
 }

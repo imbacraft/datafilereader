@@ -10,7 +10,7 @@ public class Substance {
   private String euIndexCode;
   private String einecsOrElincsCode;
   private boolean dutyToDeclare;
-  private short isUnwanted;
+  private String isUnwanted;
   private boolean isProhibited;
   private boolean isReach;
   private boolean isDeleted;
@@ -24,7 +24,7 @@ public class Substance {
       String euIndexCode,
       String einecsOrElincsCode,
       boolean dutyToDeclare,
-      short isUnwanted,
+      String isUnwanted,
       boolean isProhibited,
       boolean isReach,
       boolean isDeleted,
@@ -90,11 +90,11 @@ public class Substance {
     this.dutyToDeclare = dutyToDeclare;
   }
 
-  public short getIsUnwanted() {
+  public String getIsUnwanted() {
     return isUnwanted;
   }
 
-  public void setIsUnwanted(short isUnwanted) {
+  public void setIsUnwanted(String isUnwanted) {
     this.isUnwanted = isUnwanted;
   }
 
