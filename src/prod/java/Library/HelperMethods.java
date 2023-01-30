@@ -48,6 +48,10 @@ public class HelperMethods {
   }
 
   public static boolean stringIsNotNullorEmptyAndContainsOnlyDigits(String string) {
-    return string != null && !string.isEmpty() && string.matches("^\\d+$");
+    return string != null && !string.isEmpty() && string.matches("-?\\d+");
+  }
+
+  public static boolean stringIsNotNullorEmpty(String string){
+    return string != null && !string.isEmpty();
   }
 }

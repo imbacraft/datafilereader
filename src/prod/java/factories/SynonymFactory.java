@@ -8,7 +8,7 @@ import entities.Synonym;
 public class SynonymFactory implements FactoryInterface<List<Synonym>> {
 
   @Override
-  public List<Synonym> create(String[] splitBlock) {
+  public List<Synonym> create(String[] splitBlock, long lineNumber) {
     return createSynonymList(splitBlock);
   }
 

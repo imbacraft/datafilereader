@@ -1,90 +1,86 @@
 package Library;
 
+import entities.Substance;
+import factories.SubstanceFactory;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import entities.Substance;
-import entities.Synonym;
-import factories.SubstanceFactory;
-
 public class Library {
 
-    public void readDatFile(String filename) {
+  public void readDatFile(String fileName) {
 
-        FileReader file;
+    FileReader file;
+    long lineNumber = 0;
 
-        try {
+    try {
 
-            //Load file. If file is not found, throw IOException.
-            file = new FileReader(filename);
+      // Load file. If file is not found, throw IOException.
+      file = new FileReader(fileName);
 
-            BufferedReader reader = new BufferedReader(file);
-            StringBuilder block = new StringBuilder();
+      BufferedReader reader = new BufferedReader(file);
+      StringBuilder block = new StringBuilder();
 
-            //First line is the header of the data file, so read it to move to the blocks.
-            String header = reader.readLine();
+      // First line is the header of the data file.
+      String header = reader.readLine();
+      lineNumber++;
 
-            String ln;
-            ln = reader.readLine();
-            block.append(ln + "\n");
+      String line;
+      line = reader.readLine();
+      lineNumber++;
+      block.append(line + "\n");
 
-            String[] splitLine = ln.split("\t");
-            String id = splitLine[1];
+      String[] splitLine = line.split("\t");
+      String id = splitLine[1];
 
-            while ((ln = reader.readLine()) != null){
+      while ((line = reader.readLine()) != null) {
 
-                splitLine = ln.split("\t");
+        splitLine = line.split("\t");
 
-                String id2 = splitLine[1];
+        String id2 = splitLine[1];
 
-                if (id.equals(id2)) {
+        if (id.equals(id2)) {
 
-                    block.append(ln + "\n");
-
-                } else {
-
-                    //Split block to get all the lines of the block
-                    String[] splitBlock = block.toString().split("\n");
-
-                    //Create Substance object from the first line of the block
-                    SubstanceFactory substanceFactory = new SubstanceFactory();
-                    Substance substance = substanceFactory.create(splitBlock);
-                    //Add each substance to the Substance List
-                    substanceFactory.addToItemList(substance);
+          block.append(line + "\n");
 
 
+        } else {
 
+          // Split block to get all the lines of the block
+          String[] splitBlock = block.toString().split("\n");
 
+          // Create Substance object from the first line of the block
+          SubstanceFactory substanceFactory = new SubstanceFactory();
+          Substance substance = substanceFactory.create(splitBlock, lineNumber);
+          // Add each substance to the Substance List
+          substanceFactory.addToItemList(substance);
 
+          System.out.println(substance);
 
-                    // System.out.println(substance.toString());
+          // System.out.println(substance.toString());
 
+          // Move to the next block
+          id = id2;
 
-                    //Move to the next block
-                    id = id2;
+          // Clear the previous block for memory efficiency.
+          block.setLength(0);
 
-                    //Clear the previous block for memory efficiency.
-                    block.setLength(0);
+          // Append next block
+          block.append(line + "\n");
 
-                    //Append next block
-                    block.append(ln + "\n");
-                }
-
-
-
-            }
-
-            //Close the BufferedReader and the file.
-            reader.close();
-            file.close();
-
-        } catch (IOException ex) {
-
-            ex.printStackTrace();
         }
 
+        lineNumber++;
 
+      }
+
+      // Close the BufferedReader and the file.
+      reader.close();
+      file.close();
+
+    } catch (IOException ex) {
+
+      ex.printStackTrace();
     }
-
+  }
 }
