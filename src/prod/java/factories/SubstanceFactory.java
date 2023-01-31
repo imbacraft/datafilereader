@@ -13,7 +13,7 @@ import utils.HelperMethods;
 
 public class SubstanceFactory implements FactoryInterface<Substance> {
 
-  public static List<Substance> substanceList = new ArrayList<>();
+  public List<Substance> substanceList = new ArrayList<>();
 
   @Override
   public Substance create(String[] splitBlock, long lineNumber) {
@@ -317,4 +317,13 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
 
     throw new IllegalArgumentException("Parsed value is neither 0 nor 1 nor -1.");
   }
+
+  public List<Substance> getSubstanceList() {
+    return substanceList;
+  }
+
+  public void setSubstanceList(List<Substance> substanceList) {
+    this.substanceList = substanceList;
+  }
+
 }

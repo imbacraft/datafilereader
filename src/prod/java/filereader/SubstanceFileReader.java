@@ -4,25 +4,28 @@ import entities.Substance;
 import entities.Synonym;
 import factories.SubstanceFactory;
 import factories.SynonymFactory;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-public class DataFileReader {
+public class SubstanceFileReader implements DataFileReaderInterface<List<Substance>> {
 
-  public void readDataFileAndExtractEntities(String fileName) {
+  @Override
+  public List<Substance> readDataFileAndExtractEntities(String filePath) {
 
     FileReader file;
     long lineNumber = 0;
 
+    // Create SubstanceFactory
+    SubstanceFactory substanceFactory = new SubstanceFactory();
+
     try {
 
       // Load file. If file is not found, throw IOException.
-      file = new FileReader(fileName);
+      file = new FileReader(filePath);
 
-      //Create reader and block
+      // Create reader and block
       BufferedReader reader = new BufferedReader(file);
       StringBuilder block = new StringBuilder();
 
@@ -31,7 +34,7 @@ public class DataFileReader {
       String header = reader.readLine();
       lineNumber++;
 
-      //Read the next line of the file
+      // Read the next line of the file
       String line;
       line = reader.readLine();
       lineNumber++;
@@ -50,27 +53,24 @@ public class DataFileReader {
 
           block.append(line + "\n");
 
-
         } else {
 
           // Split block to get all the lines of the block
           String[] splitBlock = block.toString().split("\n");
 
           // Create Substance object from the first line of the block
-          SubstanceFactory substanceFactory = new SubstanceFactory();
           Substance substance = substanceFactory.create(splitBlock, lineNumber);
 
-          //Get the Synonyms from the rest of the lines of the block.
+          // Get the Synonyms from the rest of the lines of the block.
           SynonymFactory synonymFactory = new SynonymFactory();
           List<Synonym> synonymList = synonymFactory.create(splitBlock, lineNumber);
 
-          //Add the Synonyms to the Substance
+          // Add the Synonyms to the Substance
           for (Synonym syn : synonymList) {
 
             substance.addSynonym(syn);
           }
 
-          System.out.println(substance);
           // Add each substance to the Substance List
           substanceFactory.addToItemList(substance);
 
@@ -82,12 +82,10 @@ public class DataFileReader {
 
           // Append next block
           block.append(line + "\n");
-
         }
 
-        //increment line number
+        // increment line number
         lineNumber++;
-
       }
 
       // Close the BufferedReader and the file when finished.
@@ -98,5 +96,7 @@ public class DataFileReader {
 
       ex.printStackTrace();
     }
+
+    return substanceFactory.getSubstanceList();
   }
 }
