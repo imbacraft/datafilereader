@@ -63,6 +63,11 @@ public class SynonymFactory implements FactoryInterface<List<Synonym>> {
   @Override
   public boolean hasAllRequiredFields(String[] splitItemLine) {
 
+    //Especially, for the first record line with nodeID = -1, skip this check because it is still a "header line"
+    if (splitItemLine[SynonymConstants.NODE_ID_INDEX].equals("-1")){
+      return true;
+    }
+
     if (splitItemLine.length == SynonymConstants.TOTAL_FIELDS) {
       return true;
     }

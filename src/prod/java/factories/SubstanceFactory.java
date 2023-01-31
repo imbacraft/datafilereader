@@ -95,6 +95,11 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
   @Override
   public boolean hasAllRequiredFields(String[] splitItemLine) {
 
+    //Especially, for the first record line with nodeID = -1, skip this check because it is still a "header line"
+    if (splitItemLine[SubstanceConstants.NODE_ID_INDEX].equals("-1")){
+      return true;
+    }
+
     if (splitItemLine.length == SubstanceConstants.TOTAL_FIELDS) {
       return true;
     }
