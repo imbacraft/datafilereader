@@ -1,13 +1,14 @@
 package factories;
 
-import Library.Constants;
-import Library.HelperMethods;
+import java.util.ArrayList;
+import java.util.List;
+
+import constants.SynonymConstants;
 import entities.Synonym;
 import exceptions.InvalidFieldException;
 import exceptions.MissingFieldException;
-import java.util.ArrayList;
-import java.util.List;
 import messages.SynonymErrorMessages;
+import utils.HelperMethods;
 
 public class SynonymFactory implements FactoryInterface<List<Synonym>> {
 
@@ -62,7 +63,7 @@ public class SynonymFactory implements FactoryInterface<List<Synonym>> {
   @Override
   public boolean hasAllRequiredFields(String[] splitItemLine) {
 
-    if (splitItemLine.length == Constants.SYNONYM_FIELDS) {
+    if (splitItemLine.length == SynonymConstants.TOTAL_FIELDS) {
       return true;
     }
 
@@ -85,40 +86,40 @@ public class SynonymFactory implements FactoryInterface<List<Synonym>> {
 
       throw new InvalidFieldException(
           SynonymErrorMessages.invalidRecordIdentifier(
-              splitSynonym[Constants.RECORD_IDENTIFIER_INDEX], errorLineNumber));
+              splitSynonym[SynonymConstants.RECORD_IDENTIFIER_INDEX], errorLineNumber));
     }
 
     if (isValidNodeID(splitSynonym) == false) {
 
       throw new InvalidFieldException(
           SynonymErrorMessages.invalidNodeID(
-              splitSynonym[Constants.SYNONYM_NODE_ID_INDEX], errorLineNumber));
+              splitSynonym[SynonymConstants.NODE_ID_INDEX], errorLineNumber));
     }
 
     if (isValidSynonymID(splitSynonym) == false) {
       throw new InvalidFieldException(
           SynonymErrorMessages.invalidSynonymID(
-              splitSynonym[Constants.SYNONYM_ID_INDEX], errorLineNumber));
+              splitSynonym[SynonymConstants.SYNONYM_ID_INDEX], errorLineNumber));
     }
 
     if (isValidSynonymISOLanguage(splitSynonym) == false) {
       throw new InvalidFieldException(
           SynonymErrorMessages.invalidISOLanguage(
-              splitSynonym[Constants.SYNONYM_ISO_LANGUAGE_INDEX], errorLineNumber));
+              splitSynonym[SynonymConstants.ISO_LANGUAGE_INDEX], errorLineNumber));
     }
 
     if (isValidSynonymName(splitSynonym) == false) {
       throw new InvalidFieldException(
           SynonymErrorMessages.invalidSynonymName(
-              splitSynonym[Constants.SYNONYM_NAME_INDEX], errorLineNumber));
+              splitSynonym[SynonymConstants.SYNONYM_NAME_INDEX], errorLineNumber));
     }
 
     return true;
   }
 
   private boolean isValidSynonymName(String[] splitSynonym) {
-    if (splitSynonym[Constants.SYNONYM_NAME_INDEX].length()
-        <= Constants.SYNONYM_NAME_MAX_CHARACTERS) {
+    if (splitSynonym[SynonymConstants.SYNONYM_NAME_INDEX].length()
+        <= SynonymConstants.SYNONYM_NAME_MAX_CHARACTERS) {
 
       return true;
     }
@@ -128,9 +129,9 @@ public class SynonymFactory implements FactoryInterface<List<Synonym>> {
 
   private boolean isValidSynonymISOLanguage(String[] splitSynonym) {
 
-    for (String language : Constants.SYNONYM_ISO_LANGUAGES) {
+    for (String language : SynonymConstants.ISO_LANGUAGES) {
 
-      if (language.equals(splitSynonym[Constants.SYNONYM_ISO_LANGUAGE_INDEX]) == true) {
+      if (language.equals(splitSynonym[SynonymConstants.ISO_LANGUAGE_INDEX]) == true) {
 
         return true;
       }
@@ -141,13 +142,13 @@ public class SynonymFactory implements FactoryInterface<List<Synonym>> {
 
   private boolean isValidSynonymID(String[] splitSynonym) {
     if (HelperMethods.stringIsNotNullorEmptyAndContainsOnlyDigits(
-            splitSynonym[Constants.SYNONYM_ID_INDEX])
+            splitSynonym[SynonymConstants.SYNONYM_ID_INDEX])
         == false) {
 
       return false;
     }
 
-    if (splitSynonym[Constants.SYNONYM_ID_INDEX].length() > Constants.SYNONYM_ID_MAX_DIGITS) {
+    if (splitSynonym[SynonymConstants.SYNONYM_ID_INDEX].length() > SynonymConstants.SYNONYM_ID_MAX_DIGITS) {
 
       return false;
     }
@@ -157,14 +158,14 @@ public class SynonymFactory implements FactoryInterface<List<Synonym>> {
 
   private boolean isValidNodeID(String[] splitSynonym) {
     if (HelperMethods.stringIsNotNullorEmptyAndContainsOnlyDigits(
-            splitSynonym[Constants.SYNONYM_NODE_ID_INDEX])
+            splitSynonym[SynonymConstants.NODE_ID_INDEX])
         == false) {
 
       return false;
     }
 
-    if (splitSynonym[Constants.SYNONYM_NODE_ID_INDEX].length()
-        > Constants.SYNONYM_NODEID_MAX_DIGITS) {
+    if (splitSynonym[SynonymConstants.NODE_ID_INDEX].length()
+        > SynonymConstants.NODEID_MAX_DIGITS) {
 
       return false;
     }
@@ -174,8 +175,8 @@ public class SynonymFactory implements FactoryInterface<List<Synonym>> {
 
   private boolean isValidRecordIdentifier(String[] splitSynonym) {
 
-    if (splitSynonym[Constants.RECORD_IDENTIFIER_INDEX].length()
-        != Constants.SYNONYM_RECORD_IDENTIFIER_MAX_CHAR_NUMBER) {
+    if (splitSynonym[SynonymConstants.RECORD_IDENTIFIER_INDEX].length()
+        != SynonymConstants.RECORD_IDENTIFIER_MAX_CHAR_NUMBER) {
 
       return false;
     }

@@ -1,4 +1,7 @@
-package Library;
+package utils;
+
+import constants.Constants;
+import constants.SubstanceConstants;
 
 public class HelperMethods {
 
@@ -19,7 +22,7 @@ public class HelperMethods {
 
   public static String checkForFieldAvailability(String field) {
 
-    for (String emptyIdentifier : Constants.emptyIdentifierList) {
+    for (String emptyIdentifier : SubstanceConstants.emptyIdentifierList) {
 
       if (field.equals(emptyIdentifier)) {
         return Constants.NOT_AVAILABLE;

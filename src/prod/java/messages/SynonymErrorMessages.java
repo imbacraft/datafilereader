@@ -1,6 +1,6 @@
 package messages;
 
-import Library.Constants;
+import constants.SynonymConstants;
 
 public class SynonymErrorMessages {
 
@@ -9,7 +9,7 @@ public class SynonymErrorMessages {
     return "At least the Synonym Record Identifier of the synonym entry at line: "
         + errorLineNumber
         + " is malformed. Expected "
-        + Constants.SYNONYM_RECORD_IDENTIFIER_MAX_CHAR_NUMBER
+        + SynonymConstants.RECORD_IDENTIFIER_MAX_CHAR_NUMBER
         + " char but got: "
         + string
         + ".";
@@ -20,7 +20,7 @@ public class SynonymErrorMessages {
     return "At least the Synonym Node ID of the synonym entry at line: "
         + errorLineNumber
         + " is malformed. Expected maximum "
-        + Constants.SYNONYM_NODEID_MAX_DIGITS
+        + SynonymConstants.NODEID_MAX_DIGITS
         + " digits but got: "
         + string
         + ".";
@@ -31,7 +31,7 @@ public class SynonymErrorMessages {
     return "At least the Synonym ID of the synonym entry at line: "
         + errorLineNumber
         + " is malformed. Expected maximum "
-        + Constants.SYNONYM_ID_MAX_DIGITS
+        + SynonymConstants.SYNONYM_ID_MAX_DIGITS
         + " digits but got: "
         + string
         + ".";
@@ -42,7 +42,7 @@ public class SynonymErrorMessages {
     return "At least the Synonym ISO Language of the synonym entry at line: "
         + errorLineNumber
         + " is malformed. Expected maximum "
-        + Constants.SYNONYM_ISO_LANGUAGE_MAX_CHARACTERS
+        + SynonymConstants.ISO_LANGUAGE_MAX_CHARACTERS
         + " characters but got: "
         + string
         + ".";
@@ -54,7 +54,7 @@ public class SynonymErrorMessages {
     return "At least the Synonym Name of the synonym entry at line: "
         + errorLineNumber
         + " is malformed. Expected maximum "
-        + Constants.SYNONYM_NAME_MAX_CHARACTERS
+        + SynonymConstants.SYNONYM_NAME_MAX_CHARACTERS
         + " characters but got: "
         + string
         + ".";

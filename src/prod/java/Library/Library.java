@@ -70,9 +70,6 @@ public class Library {
           // Add each substance to the Substance List
           substanceFactory.addToItemList(substance);
 
-
-          // System.out.println(substance.toString());
-
           // Move to the next block
           id = id2;
 
@@ -84,11 +81,12 @@ public class Library {
 
         }
 
+        //increment line number
         lineNumber++;
 
       }
 
-      // Close the BufferedReader and the file.
+      // Close the BufferedReader and the file when finished.
       reader.close();
       file.close();
 

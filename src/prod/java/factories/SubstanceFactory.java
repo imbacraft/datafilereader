@@ -1,13 +1,15 @@
 package factories;
 
-import Library.Constants;
-import Library.HelperMethods;
+import java.util.ArrayList;
+import java.util.List;
+
+import constants.Constants;
+import constants.SubstanceConstants;
 import entities.Substance;
 import exceptions.InvalidFieldException;
 import exceptions.MissingFieldException;
-import java.util.ArrayList;
-import java.util.List;
 import messages.SubstanceErrorMessages;
+import utils.HelperMethods;
 
 public class SubstanceFactory implements FactoryInterface<Substance> {
 
@@ -48,30 +50,30 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
       char substanceIdentifier = splitSubstance[Constants.RECORD_IDENTIFIER_INDEX].charAt(0);
       Substance.setRecordIdentifier(substanceIdentifier);
 
-      long substanceNodeID = Long.parseLong(splitSubstance[Constants.SUBSTANCE_NODE_ID_INDEX]);
+      long substanceNodeID = Long.parseLong(splitSubstance[SubstanceConstants.NODE_ID_INDEX]);
       String casCode =
           HelperMethods.checkForFieldAvailability(
-              splitSubstance[Constants.SUBSTANCE_CAS_CODE_INDEX]);
+              splitSubstance[SubstanceConstants.CAS_CODE_INDEX]);
       String euIndexCode =
           HelperMethods.checkForFieldAvailability(
-              splitSubstance[Constants.SUBSTANCE_EU_CODE_INDEX]);
+              splitSubstance[SubstanceConstants.EU_CODE_INDEX]);
       String einecsOrElincsCode =
           HelperMethods.checkForFieldAvailability(
-              splitSubstance[Constants.SUBSTANCE_EINECS_ELINCS_CODE_INDEX]);
+              splitSubstance[SubstanceConstants.EINECS_ELINCS_CODE_INDEX]);
       boolean dutyToDeclare =
           HelperMethods.parseStringToBoolean(
-              splitSubstance[Constants.SUBSTANCE_DUTY_TO_DECLARE_INDEX]);
+              splitSubstance[SubstanceConstants.DUTY_TO_DECLARE_INDEX]);
       String isUnwanted =
-          convertIsUnwantedNumericalsToWords(splitSubstance[Constants.SUBSTANCE_IS_UNWANTED_INDEX]);
+          convertIsUnwantedNumericalsToWords(splitSubstance[SubstanceConstants.IS_UNWANTED_INDEX]);
       boolean isProhibited =
           HelperMethods.parseStringToBoolean(
-              splitSubstance[Constants.SUBSTANCE_IS_PROHIBITED_INDEX]);
+              splitSubstance[SubstanceConstants.IS_PROHIBITED_INDEX]);
       boolean isReach =
-          HelperMethods.parseStringToBoolean(splitSubstance[Constants.SUBSTANCE_IS_REACH_INDEX]);
+          HelperMethods.parseStringToBoolean(splitSubstance[SubstanceConstants.IS_REACH_INDEX]);
       boolean isDeleted =
-          HelperMethods.parseStringToBoolean(splitSubstance[Constants.SUBSTANCE_IS_DELETED_INDEX]);
+          HelperMethods.parseStringToBoolean(splitSubstance[SubstanceConstants.IS_DELETED_INDEX]);
       boolean isHidden =
-          HelperMethods.parseStringToBoolean(splitSubstance[Constants.SUBSTANCE_IS_HIDDEN_INDEX]);
+          HelperMethods.parseStringToBoolean(splitSubstance[SubstanceConstants.IS_HIDDEN_INDEX]);
 
       substance =
           new Substance(
@@ -93,7 +95,7 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
   @Override
   public boolean hasAllRequiredFields(String[] splitItemLine) {
 
-    if (splitItemLine.length == Constants.SUBSTANCE_FIELDS) {
+    if (splitItemLine.length == SubstanceConstants.TOTAL_FIELDS) {
       return true;
     }
 
@@ -114,66 +116,66 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
 
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidNodeID(
-              splitSubstance[Constants.SUBSTANCE_NODE_ID_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.NODE_ID_INDEX], errorLineNumber));
     }
 
     if (isValidCASCode(splitSubstance) == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidCASCode(
-              splitSubstance[Constants.SUBSTANCE_CAS_CODE_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.CAS_CODE_INDEX], errorLineNumber));
     }
 
     if (isValidEUIndexCode(splitSubstance) == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidEUCode(
-              splitSubstance[Constants.SUBSTANCE_EU_CODE_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.EU_CODE_INDEX], errorLineNumber));
     }
 
     if (isValidEinecsOrElincsCode(splitSubstance) == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidEinecsOrElincsCode(
-              splitSubstance[Constants.SUBSTANCE_EINECS_ELINCS_CODE_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.EINECS_ELINCS_CODE_INDEX], errorLineNumber));
     }
 
     if (isValidDutyToDeclareField(splitSubstance) == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidDutyToDeclare(
-              splitSubstance[Constants.SUBSTANCE_DUTY_TO_DECLARE_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.DUTY_TO_DECLARE_INDEX], errorLineNumber));
     }
 
     if (isValidIsUnwantedField(splitSubstance) == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidIsUnwanted(
-              splitSubstance[Constants.SUBSTANCE_IS_UNWANTED_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.IS_UNWANTED_INDEX], errorLineNumber));
     }
 
     if (isValidIsProhibitedField(splitSubstance) == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidIsProhibited(
-              splitSubstance[Constants.SUBSTANCE_IS_PROHIBITED_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.IS_PROHIBITED_INDEX], errorLineNumber));
     }
 
     if (isValidIsReachField(splitSubstance) == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidIsReach(
-              splitSubstance[Constants.SUBSTANCE_IS_REACH_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.IS_REACH_INDEX], errorLineNumber));
     }
 
     if (isValidIsDeletedField(splitSubstance) == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidIsDeleted(
-              splitSubstance[Constants.SUBSTANCE_IS_DELETED_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.IS_DELETED_INDEX], errorLineNumber));
     }
 
     if (isValidIsHiddenField(splitSubstance) == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidIsHidden(
-              splitSubstance[Constants.SUBSTANCE_IS_HIDDEN_INDEX], errorLineNumber));
+              splitSubstance[SubstanceConstants.IS_HIDDEN_INDEX], errorLineNumber));
     }
 
     if (isDeletedAndIsHiddenAreNotBothTrue(
-            splitSubstance[Constants.SUBSTANCE_IS_DELETED_INDEX],
-            splitSubstance[Constants.SUBSTANCE_IS_HIDDEN_INDEX])
+            splitSubstance[SubstanceConstants.IS_DELETED_INDEX],
+            splitSubstance[SubstanceConstants.IS_HIDDEN_INDEX])
         == false) {
       throw new InvalidFieldException(
           SubstanceErrorMessages.bothIsDeletedAndIsHiddenAreTrue(errorLineNumber));
@@ -191,7 +193,7 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
   private boolean isValidRecordIdentifier(String[] splitSubstance) {
 
     if (splitSubstance[Constants.RECORD_IDENTIFIER_INDEX].length()
-        != Constants.SUBSTANCE_RECORD_IDENTIFIER_CHAR_NUMBER) {
+        != SubstanceConstants.RECORD_IDENTIFIER_CHAR_NUMBER) {
 
       return false;
     }
@@ -202,14 +204,14 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
   private boolean isValidNodeID(String[] splitSubstance) {
 
     if (HelperMethods.stringIsNotNullorEmptyAndContainsOnlyDigits(
-            splitSubstance[Constants.SUBSTANCE_NODE_ID_INDEX])
+            splitSubstance[SubstanceConstants.NODE_ID_INDEX])
         == false) {
 
       return false;
     }
 
-    if (splitSubstance[Constants.SUBSTANCE_NODE_ID_INDEX].length()
-        > Constants.SUBSTANCE_NODEID_DIGITS) {
+    if (splitSubstance[SubstanceConstants.NODE_ID_INDEX].length()
+        > SubstanceConstants.NODEID_DIGITS) {
 
       return false;
     }
@@ -219,8 +221,8 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
 
   private boolean isValidCASCode(String[] splitSubstance) {
 
-    if (splitSubstance[Constants.SUBSTANCE_CAS_CODE_INDEX].length()
-        <= Constants.SUBSTANCE_CAS_CODE_MAX_CHARACTERS) {
+    if (splitSubstance[SubstanceConstants.CAS_CODE_INDEX].length()
+        <= SubstanceConstants.CAS_CODE_MAX_CHARACTERS) {
 
       return true;
     }
@@ -230,8 +232,8 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
 
   private boolean isValidEUIndexCode(String[] splitSubstance) {
 
-    if (splitSubstance[Constants.SUBSTANCE_EU_CODE_INDEX].length()
-        <= Constants.SUBSTANCE_EU_CODE_MAX_CHARACTERS) {
+    if (splitSubstance[SubstanceConstants.EU_CODE_INDEX].length()
+        <= SubstanceConstants.EU_CODE_MAX_CHARACTERS) {
 
       return true;
     }
@@ -241,8 +243,8 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
 
   private boolean isValidEinecsOrElincsCode(String[] splitSubstance) {
 
-    if (splitSubstance[Constants.SUBSTANCE_EINECS_ELINCS_CODE_INDEX].length()
-        <= Constants.SUBSTANCE_EINECS_ELINCS_CODE_MAX_CHARACTERS) {
+    if (splitSubstance[SubstanceConstants.EINECS_ELINCS_CODE_INDEX].length()
+        <= SubstanceConstants.EINECS_ELINCS_CODE_MAX_CHARACTERS) {
 
       return true;
     }
@@ -252,38 +254,38 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
 
   private boolean isValidDutyToDeclareField(String[] splitSubstance) {
 
-    String dutyToDeclare = splitSubstance[Constants.SUBSTANCE_DUTY_TO_DECLARE_INDEX];
+    String dutyToDeclare = splitSubstance[SubstanceConstants.DUTY_TO_DECLARE_INDEX];
     return dutyToDeclare != null && (dutyToDeclare.equals("0") || dutyToDeclare.equals("1"));
   }
 
   private boolean isValidIsUnwantedField(String[] splitSubstance) {
 
-    String isUnwanted = splitSubstance[Constants.SUBSTANCE_IS_UNWANTED_INDEX];
+    String isUnwanted = splitSubstance[SubstanceConstants.IS_UNWANTED_INDEX];
     return isUnwanted != null
         && (isUnwanted.equals("0") || isUnwanted.equals("1") || isUnwanted.equals("-1"));
   }
 
   private boolean isValidIsProhibitedField(String[] splitSubstance) {
 
-    String isProhibited = splitSubstance[Constants.SUBSTANCE_IS_PROHIBITED_INDEX];
+    String isProhibited = splitSubstance[SubstanceConstants.IS_PROHIBITED_INDEX];
     return isProhibited != null && (isProhibited.equals("0") || isProhibited.equals("1"));
   }
 
   private boolean isValidIsReachField(String[] splitSubstance) {
 
-    String isReach = splitSubstance[Constants.SUBSTANCE_IS_REACH_INDEX];
+    String isReach = splitSubstance[SubstanceConstants.IS_REACH_INDEX];
     return isReach != null && (isReach.equals("0") || isReach.equals("1"));
   }
 
   private boolean isValidIsDeletedField(String[] splitSubstance) {
 
-    String isDeleted = splitSubstance[Constants.SUBSTANCE_IS_DELETED_INDEX];
+    String isDeleted = splitSubstance[SubstanceConstants.IS_DELETED_INDEX];
     return isDeleted != null && (isDeleted.equals("0") || isDeleted.equals("1"));
   }
 
   private boolean isValidIsHiddenField(String[] splitSubstance) {
 
-    String isHidden = splitSubstance[Constants.SUBSTANCE_IS_HIDDEN_INDEX];
+    String isHidden = splitSubstance[SubstanceConstants.IS_HIDDEN_INDEX];
 
     return isHidden != null && (isHidden.equals("0") || isHidden.equals("1"));
   }
@@ -310,7 +312,7 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
     }
 
     if ("-1".equals(isUnwantedNumerical)) {
-      return Constants.IS_UNWANTED_UNSPECIFIED;
+      return SubstanceConstants.IS_UNWANTED_UNSPECIFIED;
     }
 
     throw new IllegalArgumentException("Parsed value is neither 0 nor 1 nor -1.");
