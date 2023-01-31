@@ -7,7 +7,7 @@ import exceptions.InvalidFieldException;
 import exceptions.MissingFieldException;
 import java.util.ArrayList;
 import java.util.List;
-import messages.ErrorMessages;
+import messages.SubstanceErrorMessages;
 
 public class SubstanceFactory implements FactoryInterface<Substance> {
 
@@ -106,68 +106,68 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
     if (isValidRecordIdentifier(splitSubstance) == false) {
 
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceRecordIdentifierField(
+          SubstanceErrorMessages.invalidRecordIdentifier(
               splitSubstance[Constants.RECORD_IDENTIFIER_INDEX], errorLineNumber));
     }
 
     if (isValidNodeID(splitSubstance) == false) {
 
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceNodeIDField(
+          SubstanceErrorMessages.invalidNodeID(
               splitSubstance[Constants.SUBSTANCE_NODE_ID_INDEX], errorLineNumber));
     }
 
     if (isValidCASCode(splitSubstance) == false) {
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceCASCodeField(
+          SubstanceErrorMessages.invalidCASCode(
               splitSubstance[Constants.SUBSTANCE_CAS_CODE_INDEX], errorLineNumber));
     }
 
     if (isValidEUIndexCode(splitSubstance) == false) {
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceEUCodeField(
+          SubstanceErrorMessages.invalidEUCode(
               splitSubstance[Constants.SUBSTANCE_EU_CODE_INDEX], errorLineNumber));
     }
 
     if (isValidEinecsOrElincsCode(splitSubstance) == false) {
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceEinecsOrElincsCodeField(
+          SubstanceErrorMessages.invalidEinecsOrElincsCode(
               splitSubstance[Constants.SUBSTANCE_EINECS_ELINCS_CODE_INDEX], errorLineNumber));
     }
 
     if (isValidDutyToDeclareField(splitSubstance) == false) {
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceDutyToDeclareField(
+          SubstanceErrorMessages.invalidDutyToDeclare(
               splitSubstance[Constants.SUBSTANCE_DUTY_TO_DECLARE_INDEX], errorLineNumber));
     }
 
     if (isValidIsUnwantedField(splitSubstance) == false) {
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceIsUnwantedField(
+          SubstanceErrorMessages.invalidIsUnwanted(
               splitSubstance[Constants.SUBSTANCE_IS_UNWANTED_INDEX], errorLineNumber));
     }
 
     if (isValidIsProhibitedField(splitSubstance) == false) {
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceIsProhibitedField(
+          SubstanceErrorMessages.invalidIsProhibited(
               splitSubstance[Constants.SUBSTANCE_IS_PROHIBITED_INDEX], errorLineNumber));
     }
 
     if (isValidIsReachField(splitSubstance) == false) {
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceIsReachField(
+          SubstanceErrorMessages.invalidIsReach(
               splitSubstance[Constants.SUBSTANCE_IS_REACH_INDEX], errorLineNumber));
     }
 
     if (isValidIsDeletedField(splitSubstance) == false) {
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceIsDeletedField(
+          SubstanceErrorMessages.invalidIsDeleted(
               splitSubstance[Constants.SUBSTANCE_IS_DELETED_INDEX], errorLineNumber));
     }
 
     if (isValidIsHiddenField(splitSubstance) == false) {
       throw new InvalidFieldException(
-          ErrorMessages.invalidSubstanceIsHiddenField(
+          SubstanceErrorMessages.invalidIsHidden(
               splitSubstance[Constants.SUBSTANCE_IS_HIDDEN_INDEX], errorLineNumber));
     }
 
@@ -176,7 +176,7 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
             splitSubstance[Constants.SUBSTANCE_IS_HIDDEN_INDEX])
         == false) {
       throw new InvalidFieldException(
-          ErrorMessages.bothIsDeletedAndIsHiddenAreTrue(errorLineNumber));
+          SubstanceErrorMessages.bothIsDeletedAndIsHiddenAreTrue(errorLineNumber));
     }
 
     return true;

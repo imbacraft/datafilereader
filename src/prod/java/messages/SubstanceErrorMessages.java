@@ -2,9 +2,9 @@ package messages;
 
 import Library.Constants;
 
-public class ErrorMessages {
+public class SubstanceErrorMessages {
 
-  public static String invalidSubstanceRecordIdentifierField(String string, long errorLineNumber) {
+  public static String invalidRecordIdentifier(String string, long errorLineNumber) {
 
     return "At least the Substance Record Identifier of the substance entry at line: "
         + errorLineNumber
@@ -15,7 +15,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceNodeIDField(String string, long errorLineNumber) {
+  public static String invalidNodeID(String string, long errorLineNumber) {
 
     return "At least the Substance Node ID of the substance entry at line: "
         + errorLineNumber
@@ -26,7 +26,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceCASCodeField(String string, long errorLineNumber) {
+  public static String invalidCASCode(String string, long errorLineNumber) {
 
     return "At least the Substance CAS Code of the substance entry at line: "
         + errorLineNumber
@@ -37,7 +37,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceEUCodeField(String string, long errorLineNumber) {
+  public static String invalidEUCode(String string, long errorLineNumber) {
 
     return "At least the Substance EU Index Code of the substance entry at line: "
         + errorLineNumber
@@ -48,7 +48,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceEinecsOrElincsCodeField(
+  public static String invalidEinecsOrElincsCode(
       String string, long errorLineNumber) {
 
     return "At least the Substance EINECS or ELINCS Code of the substance entry at line: "
@@ -60,7 +60,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceDutyToDeclareField(String string, long errorLineNumber) {
+  public static String invalidDutyToDeclare(String string, long errorLineNumber) {
 
     return "At least the Substance dutyToDeclare field of the substance entry at line: "
         + errorLineNumber
@@ -69,7 +69,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceIsUnwantedField(String string, long errorLineNumber) {
+  public static String invalidIsUnwanted(String string, long errorLineNumber) {
 
     return "At least the Substance isUnwanted field of the substance entry at line: "
         + errorLineNumber
@@ -78,7 +78,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceIsProhibitedField(String string, long errorLineNumber) {
+  public static String invalidIsProhibited(String string, long errorLineNumber) {
 
     return "At least the Substance isProhibited field of the substance entry at line: "
         + errorLineNumber
@@ -87,7 +87,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceIsReachField(String string, long errorLineNumber) {
+  public static String invalidIsReach(String string, long errorLineNumber) {
 
     return "At least the Substance isReach field of the substance entry at line: "
         + errorLineNumber
@@ -96,7 +96,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceIsDeletedField(String string, long errorLineNumber) {
+  public static String invalidIsDeleted(String string, long errorLineNumber) {
 
     return "At least the Substance isDeleted field of the substance entry at line: "
         + errorLineNumber
@@ -105,7 +105,7 @@ public class ErrorMessages {
         + ".";
   }
 
-  public static String invalidSubstanceIsHiddenField(String string, long errorLineNumber) {
+  public static String invalidIsHidden(String string, long errorLineNumber) {
 
     return "At least the Substance isHidden field of the substance entry at line: "
         + errorLineNumber

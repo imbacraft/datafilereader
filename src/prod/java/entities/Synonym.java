@@ -60,12 +60,14 @@ public class Synonym {
 
   @Override
   public String toString() {
-    return "Synonym [isoLanguage="
-        + isoLanguage
+    return "Synonym [recordIdentifier="
+      + recordIdentifier
         + ", nodeID="
         + nodeID
         + ", synonymID="
         + synonymID
+        + ", isoLanguage="
+        + isoLanguage
         + ", synonymName="
         + synonymName
         + "]";

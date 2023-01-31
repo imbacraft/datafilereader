@@ -42,4 +42,25 @@ public class Constants {
   public static final short SUBSTANCE_CAS_CODE_MAX_CHARACTERS = 20;
   public static final short SUBSTANCE_EU_CODE_MAX_CHARACTERS = 20;
   public static final short SUBSTANCE_EINECS_ELINCS_CODE_MAX_CHARACTERS = 20;
+
+  // =========
+  // SYNONYM
+  // =========
+  public static final short SYNONYM_FIELDS = 5;
+  public static final String[] SYNONYM_ISO_LANGUAGES = {"EN","DE"}; //More ISO languages can be added later
+
+  //indexes
+  public static final short SYNONYM_NODE_ID_INDEX = 1;
+  public static final short SYNONYM_ID_INDEX = 2;
+  public static final short SYNONYM_ISO_LANGUAGE_INDEX = 3;
+  public static final short SYNONYM_NAME_INDEX = 4;
+
+  // Field qualifications
+  public static final short SYNONYM_RECORD_IDENTIFIER_MAX_CHAR_NUMBER = 2;
+  public static final short SYNONYM_NODEID_MAX_DIGITS = 18;
+  public static final short SYNONYM_ID_MAX_DIGITS = 4;
+  public static final short SYNONYM_ISO_LANGUAGE_MAX_CHARACTERS = 2;
+  public static final short SYNONYM_NAME_MAX_CHARACTERS = 250;
+
+
 }

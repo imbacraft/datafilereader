@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Substance {
@@ -16,7 +17,7 @@ public class Substance {
   private boolean isDeleted;
   private boolean isHidden;
 
-  private List<Synonym> synonymList;
+  private List<Synonym> synonymList = new ArrayList<>();
 
   public Substance(
       long nodeID,
@@ -130,28 +131,45 @@ public class Substance {
     this.isHidden = isHidden;
   }
 
+  public void addSynonym(Synonym synonym) {
+
+    this.synonymList.add(synonym);
+  }
+
+  public List<Synonym> getSynonymList() {
+    return synonymList;
+  }
+
+  public void setSynonymList(List<Synonym> synonymList) {
+    this.synonymList = synonymList;
+  }
+
   @Override
   public String toString() {
-    return "Substance [casCode="
+    return "Substance [recordIdentifier="
+        + recordIdentifier
+        + ", nodeID="
+        + nodeID
+        + ", casCode="
         + casCode
-        + ", dutyToDeclare="
-        + dutyToDeclare
-        + ", einecsOrElincsCode="
-        + einecsOrElincsCode
         + ", euIndexCode="
         + euIndexCode
-        + ", isDeleted="
-        + isDeleted
-        + ", isHidden="
-        + isHidden
+        + ", einecsOrElincsCode="
+        + einecsOrElincsCode
+        + ", dutyToDeclare"
+        + dutyToDeclare
+        + ", isUnwanted="
+        + isUnwanted
         + ", isProhibited="
         + isProhibited
         + ", isReach="
         + isReach
-        + ", isUnwanted="
-        + isUnwanted
-        + ", nodeID="
-        + nodeID
+        + ", isDeleted="
+        + isDeleted
+        + ", isHidden="
+        + isHidden
+        + ", synonymList="
+        + synonymList
         + "]";
   }
 }

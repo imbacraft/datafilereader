@@ -1,10 +1,14 @@
 package Library;
 
 import entities.Substance;
+import entities.Synonym;
 import factories.SubstanceFactory;
+import factories.SynonymFactory;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 public class Library {
 
@@ -52,10 +56,20 @@ public class Library {
           // Create Substance object from the first line of the block
           SubstanceFactory substanceFactory = new SubstanceFactory();
           Substance substance = substanceFactory.create(splitBlock, lineNumber);
+
+          // System.out.println(substance);
+          SynonymFactory synonymFactory = new SynonymFactory();
+          List<Synonym> synonymList = synonymFactory.create(splitBlock, lineNumber);
+
+          for (Synonym syn : synonymList) {
+
+            substance.addSynonym(syn);
+          }
+
+          System.out.println(substance);
           // Add each substance to the Substance List
           substanceFactory.addToItemList(substance);
 
-          System.out.println(substance);
 
           // System.out.println(substance.toString());
 
