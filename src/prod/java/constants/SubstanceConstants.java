@@ -9,7 +9,6 @@ public class SubstanceConstants extends Constants {
   // e.g. in CAS Code, EU Index Code etc.
   public static final String[] emptyIdentifierList = {"", "-"};
 
-
   public static final short TOTAL_FIELDS = 11;
 
   // indexes

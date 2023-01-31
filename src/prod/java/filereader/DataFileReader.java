@@ -1,4 +1,4 @@
-package Library;
+package filereader;
 
 import entities.Substance;
 import entities.Synonym;
@@ -10,9 +10,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-public class Library {
+public class DataFileReader {
 
-  public void readDatFile(String fileName) {
+  public void readDataFileAndExtractEntities(String fileName) {
 
     FileReader file;
     long lineNumber = 0;
@@ -22,13 +22,16 @@ public class Library {
       // Load file. If file is not found, throw IOException.
       file = new FileReader(fileName);
 
+      //Create reader and block
       BufferedReader reader = new BufferedReader(file);
       StringBuilder block = new StringBuilder();
 
       // First line is the header of the data file.
+      // Read it and increment line number
       String header = reader.readLine();
       lineNumber++;
 
+      //Read the next line of the file
       String line;
       line = reader.readLine();
       lineNumber++;
@@ -57,10 +60,11 @@ public class Library {
           SubstanceFactory substanceFactory = new SubstanceFactory();
           Substance substance = substanceFactory.create(splitBlock, lineNumber);
 
-          // System.out.println(substance);
+          //Get the Synonyms from the rest of the lines of the block.
           SynonymFactory synonymFactory = new SynonymFactory();
           List<Synonym> synonymList = synonymFactory.create(splitBlock, lineNumber);
 
+          //Add the Synonyms to the Substance
           for (Synonym syn : synonymList) {
 
             substance.addSynonym(syn);
