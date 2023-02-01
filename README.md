@@ -10,7 +10,7 @@ Its goal is to create a library that reads the file `./samples/Substances.dat` a
 1. For each line of the file, the number of attributes contained and the length of the individual attributes must be checked according to the specification document.
 2. Further file types (e.g. the enclosed `./samples/Companies.dat`) as well as resulting objects should be able to be added with as little intervention as possible in the existing code while maximising its reuse.
 3. Since the files can be of almost any length, it is important that the reading is done in blocks - i.e. in the case of Substances.dat per pure substance - so that the entire file or the resulting objects do not have to be loaded into the main memory before further processing.
-4. The project shall include a unit test that reads the file and writes it in the format: CAS-NR, first synonym of the current locale.
+4. The project shall include a unit test that reads the file and writes it in the format: `CAS-NR, first synonym of the current locale.`
 5. The same test shall check whether the last substance is called "TestD" or "TestE" according to the locale set.
 
 ## Dependencies
