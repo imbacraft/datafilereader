@@ -24,7 +24,7 @@ Its goals is to create a library that reads the file `./sample/Substances.dat` a
 1. Clone the repository from GitHub using the command: 
    `git clone https://github.com/imbacraft/datafilereader.git`
 2. Navigate to the root directory of the cloned repository using the command: 
-   `cd filereader`. Alternatively you can import the root directory as a Project onto your favorite IDE.
+   `cd datafilereader`. Alternatively you can import the root directory as a Project onto your favorite IDE.
 3. Install the project and its dependencies using the following command: 
    `mvn clean install`. Alternatively, use the same command from your favorite IDE.
 4. Run the project either from your favorite IDE, or using the command: 
