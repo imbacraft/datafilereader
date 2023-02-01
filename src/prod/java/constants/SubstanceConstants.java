@@ -1,6 +1,6 @@
 package constants;
 
-public class SubstanceConstants extends Constants {
+public class SubstanceConstants extends ItemConstants {
 
   // GENERAL
   // Based on FileSpec_1.1.pdf, section 3.1: "Empty text fields contain no character, even no

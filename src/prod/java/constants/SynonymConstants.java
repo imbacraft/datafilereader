@@ -1,6 +1,6 @@
 package constants;
 
-public class SynonymConstants extends Constants {
+public class SynonymConstants extends ItemConstants {
 
   public static final short TOTAL_FIELDS = 5;
   public static final String[] ISO_LANGUAGES = {"EN","DE"}; //More ISO languages can be added later

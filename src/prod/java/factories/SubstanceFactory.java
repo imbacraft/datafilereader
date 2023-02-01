@@ -3,7 +3,7 @@ package factories;
 import java.util.ArrayList;
 import java.util.List;
 
-import constants.Constants;
+import constants.ItemConstants;
 import constants.SubstanceConstants;
 import entities.Substance;
 import exceptions.InvalidFieldException;
@@ -47,7 +47,7 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
     if (allFieldsAreValid(splitSubstance, errorLineNumber) == true) {
 
       // Build Substance object
-      char substanceIdentifier = splitSubstance[Constants.RECORD_IDENTIFIER_INDEX].charAt(0);
+      char substanceIdentifier = splitSubstance[ItemConstants.RECORD_IDENTIFIER_INDEX].charAt(0);
       Substance.setRecordIdentifier(substanceIdentifier);
 
       long substanceNodeID = Long.parseLong(splitSubstance[SubstanceConstants.NODE_ID_INDEX]);
@@ -114,7 +114,7 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
 
       throw new InvalidFieldException(
           SubstanceErrorMessages.invalidRecordIdentifier(
-              splitSubstance[Constants.RECORD_IDENTIFIER_INDEX], errorLineNumber));
+              splitSubstance[ItemConstants.RECORD_IDENTIFIER_INDEX], errorLineNumber));
     }
 
     if (isValidNodeID(splitSubstance) == false) {
@@ -197,7 +197,7 @@ public class SubstanceFactory implements FactoryInterface<Substance> {
 
   private boolean isValidRecordIdentifier(String[] splitSubstance) {
 
-    if (splitSubstance[Constants.RECORD_IDENTIFIER_INDEX].length()
+    if (splitSubstance[ItemConstants.RECORD_IDENTIFIER_INDEX].length()
         != SubstanceConstants.RECORD_IDENTIFIER_CHAR_NUMBER) {
 
       return false;
