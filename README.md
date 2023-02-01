@@ -86,6 +86,10 @@ DataFileReader
                 └── MainClassTest.java
 ```
 
+## Formatting
+
+The Project's source code has been formatted with [Google Java Format](https://github.com/google/google-java-format) to comply with [Google Java Style](https://google.github.io/styleguide/javaguide.html).
+
 ## Functionality
 
 This project is a Java library that provides functionality to read a file (currently ./sample/Substances.dat, but can be easily expanded to read others), and make its contents available as Java objects for further processing. The library takes the contents of the Substances.dat file, parses it, rigorously checks the parsed fields against specified criteria and creates objects representing each item in the file. The resulting objects can then be used for various purposes, such as data analysis, reporting, or further processing.
