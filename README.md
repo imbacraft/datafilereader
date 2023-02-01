@@ -3,12 +3,12 @@
 ## Introduction
 
 This is a training Maven Java project. 
-Its goals is to create a library that reads the file `./sample/Substances.dat` and makes its contents available as Java objects for further processing.
+Its goal is to create a library that reads the file `./samples/Substances.dat` and makes its contents available as Java objects for further processing.
 
 ## Requirements
 
 1. For each line of the file, the number of attributes contained and the length of the individual attributes must be checked according to the specification document.
-2. Further file types (e.g. the enclosed /sample/Companies.dat) as well as resulting objects should be able to be added with as little intervention as possible in the existing code while maximising its reuse.
+2. Further file types (e.g. the enclosed `./samples/Companies.dat`) as well as resulting objects should be able to be added with as little intervention as possible in the existing code while maximising its reuse.
 3. Since the files can be of almost any length, it is important that the reading is done in blocks - i.e. in the case of Substances.dat per pure substance - so that the entire file or the resulting objects do not have to be loaded into the main memory before further processing.
 4. The project shall include a unit test that reads the file and writes it in the format: CAS-NR, first synonym of the current locale.
 5. The same test shall check whether the last substance is called "TestD" or "TestE" according to the locale set.
@@ -92,7 +92,7 @@ The Project's source code has been formatted with [Google Java Format](https://g
 
 ## Functionality
 
-This project is a Java library that provides functionality to read a file (currently ./sample/Substances.dat, but can be easily expanded to read others), and make its contents available as Java objects for further processing. The library takes the contents of the Substances.dat file, parses it, rigorously checks the parsed fields against specified criteria and creates objects representing each item in the file. The resulting objects can then be used for various purposes, such as data analysis, reporting, or further processing.
+This project is a Java library that provides functionality to read a file (currently `./samples/Substances.dat`, but can be easily expanded to read others), and make its contents available as Java objects for further processing. The library takes the contents of the Substances.dat file, parses it, rigorously checks the parsed fields against specified criteria and creates objects representing each item in the file. The resulting objects can then be used for various purposes, such as data analysis, reporting, or further processing.
 
 The library is designed to be flexible and easy to use. It can be used as a standalone library in a variety of applications or integrated into existing applications to provide additional functionality. The library is also designed to be easily extendable, allowing users to add their own custom file formats and custom objects to represent substances.
 
