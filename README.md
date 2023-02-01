@@ -21,20 +21,27 @@ Its goals is to create a library that reads the file `./sample/Substances.dat` a
 
 ## Installation 
 
-1. Clone the repository from GitHub using the command: `git clone https://github.com/imbacraft/datafilereader.git`
-2. Navigate to the root directory of the cloned repository: `cd filereader`
-3. Install the project and its dependencies using the following command: `mvn clean install`
-4. Run the project either from your favorite IDE, or using the command: `java -cp target/classes starter.MainClass`
+1. Clone the repository from GitHub using the command: 
+   `git clone https://github.com/imbacraft/datafilereader.git`
+2. Navigate to the root directory of the cloned repository: 
+   `cd filereader`
+3. Install the project and its dependencies using the following command: 
+   `mvn clean install`
+4. Run the project either from your favorite IDE, or using the command: 
+   `java -cp target/classes starter.MainClass`
 
 ## Deployment 
 
 In case the project needs to be deployed onto a production server, do the following:
-1. Package the project into a jar file using the following command: `mvn package`.
-2. Copy the generated .jar file onto the production server
-3. Run the jar file on the production server using the following command:`java -jar DataFileReader-1.0-SNAPSHOT.jar`
+1. Package the project into a jar file using the following command: 
+   `mvn package`.
+2. Copy the generated .jar file onto the production server.
+3. Run the jar file on the production server using the following command:
+   `java -jar DataFileReader-1.0-SNAPSHOT.jar`.
 
 ## Project structure
 
+```
 DataFileReader
 ├── README.md
 ├── pom.xml
@@ -77,6 +84,7 @@ DataFileReader
         └── java
             └── starter
                 └── MainClassTest.java
+```
 
 ## Functionality
 
